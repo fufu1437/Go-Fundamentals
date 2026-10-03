@@ -9,18 +9,20 @@ import (
 )
 
 func main() {
+	// bufio.NewReader wraps os.Stdin so it can be read a piece at a time, and
+	// ReadString('\n') hands back everything up to and including the first
+	// newline: one line of input.
 	r := bufio.NewReader(os.Stdin)
 	line, _ := r.ReadString('\n')
-	line = strings.TrimRight(line, "\r\n")
-
-	// TODO: parse `line` with strconv.Atoi, which hands back two values:
-	// the number it read and an error. Work out which of the two tells you
-	// whether the parse actually worked, then print the success line or the
-	// failure word the task asks for. Replace the placeholder below.
-	v, err := strconv.Atoi(line)
-	if err != nil {
-		fmt.Println("bad")
-	} else {
-		fmt.Println("ok", v)
+	parts := strings.Fields(strings.TrimSpace(line))
+	maxNum := 0
+	for _, p := range parts {
+		n, _ := strconv.Atoi(p)
+		if n > maxNum {
+			maxNum = n
+		}
 	}
+
+	// TODO: scan nums for the largest value and print it in place of this placeholder.
+	fmt.Println(maxNum)
 }
