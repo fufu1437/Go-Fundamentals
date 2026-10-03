@@ -15,11 +15,15 @@ func main() {
 	r := bufio.NewReader(os.Stdin)
 	line, _ := r.ReadString('\n')
 	parts := strings.Fields(strings.TrimSpace(line))
-	maxNum := 0
+	nums := make([]int, 0, len(parts))
 	for _, p := range parts {
 		n, _ := strconv.Atoi(p)
-		if n > maxNum {
-			maxNum = n
+		nums = append(nums, n)
+	}
+	maxNum := nums[0]
+	for _, v := range nums {
+		if v > maxNum {
+			maxNum = v
 		}
 	}
 
