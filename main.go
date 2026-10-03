@@ -1,32 +1,24 @@
 package main
 
-import (
-	"bufio"
-	"fmt"
-	"os"
-	"strings"
-)
+import "fmt"
+
+type Point struct {
+	X, Y int
+}
+
+func (p *Point) Distance(p1 *Point) int {
+	return ((p.X-p1.X)*(p.X-p1.X) + (p.Y-p1.Y)*(p.Y-p1.Y))
+}
 
 func main() {
-	r := bufio.NewReader(os.Stdin)
-	line, _ := r.ReadString('\n')
-	words := strings.Fields(strings.TrimSpace(line))
-	counts := make(map[string]int)
+	var x1, y1, x2, y2 int
+	fmt.Scan(&x1)
+	fmt.Scan(&y1)
+	fmt.Scan(&x2)
+	fmt.Scan(&y2)
 
-	// TODO: put every word of words into counts, then set these two numbers.
-	different := 0
-	once := 0
-	for _, v := range words {
-		counts[v]++
-	}
-	for _, v := range counts {
-		if v == 1 {
-			once++
-		}
-		different++
-	}
-	_ = counts
+	p1 := Point{X: x1, Y: y1}
+	p2 := Point{X: x2, Y: y2}
 
-	fmt.Println(different)
-	fmt.Println(once)
+	fmt.Println(p1.Distance(&p2))
 }
