@@ -2,15 +2,14 @@ package main
 
 import "fmt"
 
+// square should return n multiplied by itself.
+func square(n int) int {
+	// TODO: replace the placeholder below with the real result.
+	return n * n
+}
+
 func main() {
 	var n int
 	fmt.Scan(&n)
-	// TODO: accumulate the sum of 1..n with a loop, and print that instead of the placeholder.
-
-	v := 0
-	for i := 1; i <= n; i++ {
-		v += i
-	}
-
-	fmt.Println(v)
+	fmt.Println(square(n))
 }
